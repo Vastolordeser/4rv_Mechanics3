@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КМ-4 — подготовка к защите</title>
+<style>
+:root {
+  --bg: #f8f9fc;
+  --card: #ffffff;
+  --ink: #1e293b;
+  --muted: #64748b;
+  --accent: #4f46e5;
+  --accent-light: #e0e7ff;
+  --accent-hover: #4338ca;
+  --line: #e2e8f0;
+  --good: #059669;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05);
+  --radius: 16px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.6 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #1e293b 0%, #312e81 100%);
+  color: white;
+  padding: 40px 20px 36px;
+  position: relative;
+  overflow: hidden;
+}
+header::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.eyebrow { font-size: 12px; letter-spacing: .15em; text-transform: uppercase; opacity: .8; font-weight: 700; }
+h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1.1; margin: 12px 0; font-weight: 800; letter-spacing: -0.02em; }
+.hero p { margin: 0; color: #cbd5e1; max-width: 640px; font-size: 1.05rem; }
+
+/* Layout */
+.layout {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 30px;
+  align-items: start;
+}
+
+/* Sidebar */
+aside {
+  position: sticky;
+  top: 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  z-index: 10;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.aside-title { font-weight: 800; font-size: 16px; margin-bottom: 16px; color: var(--ink); }
+.search {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 16px;
+  background: #f8fafc;
+  transition: all 0.2s;
+}
+.search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); background: #fff; }
+nav { display: grid; gap: 6px; }
+.navlink {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  text-decoration: none;
+  color: #475569;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  transition: all 0.15s;
+}
+.navlink:hover, .navlink.active { background: var(--accent-light); color: var(--accent-hover); }
+.num {
+  flex: 0 0 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  background: #f1f5f9;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 12px;
+  color: #64748b;
+  transition: all 0.15s;
+}
+.navlink.active .num { background: var(--accent); color: white; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+.btn {
+  border: 1px solid var(--line);
+  background: white;
+  color: #475569;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.btn:active { transform: scale(0.98); }
+
+/* Main Content */
+main { min-width: 0; }
+.intro {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  font-size: 15px;
+  color: #475569;
+}
+.intro strong { color: var(--accent); }
+
+/* Tickets */
+.ticket {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  scroll-margin-top: 20px;
+  transition: box-shadow 0.3s;
+}
+.ticket:hover { box-shadow: var(--shadow-md); }
+.ticket-head {
+  padding: 20px 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ticket-head:hover { background: #f8fafc; }
+.ticket-no {
+  flex: 0 0 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 18px;
+}
+.ticket-title { font-size: 16px; font-weight: 700; line-height: 1.4; margin: 0; color: var(--ink); }
+.ticket-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.chevron { margin-left: auto; color: var(--muted); font-size: 20px; transition: transform 0.3s; }
+.ticket.open .chevron { transform: rotate(180deg); }
+
+.content {
+  display: none;
+  padding: 0 24px 28px;
+  border-top: 1px solid var(--line);
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+.ticket.open .content { display: block; }
+
+/* Typography inside content */
+.content h2 { font-size: 18px; margin: 28px 0 12px; color: #1e293b; font-weight: 700; border-bottom: 2px solid var(--accent-light); padding-bottom: 6px; display: inline-block; }
+.content h3 { font-size: 16px; margin: 20px 0 8px; color: #334155; font-weight: 600; }
+.content p { margin: 10px 0; color: #334155; }
+.content ul { padding-left: 24px; margin: 10px 0; color: #334155; }
+.content li { margin: 6px 0; }
+.content b { color: #0f172a; }
+
+/* Formulas */
+.formula {
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font: 600 16px/1.5 'Segoe UI', system-ui, monospace;
+  color: #1e293b;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+.note {
+  background: #ecfdf5;
+  border-left: 4px solid var(--good);
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+  font-size: 14.5px;
+  color: #064e3b;
+}
+.muted { color: var(--muted); }
+
+/* Mobile Menu Button */
+.menu-btn {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: transform 0.2s;
+}
+.menu-btn:active { transform: scale(0.9); }
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 5;
+  backdrop-filter: blur(2px);
+}
+
+footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; margin: 16px auto; padding: 0 12px; gap: 16px; }
+  aside {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 300px;
+    border-radius: 0;
+    transform: translateX(-100%);
+    max-height: 100vh;
+    padding: 20px;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.1);
+    border: none;
+    border-right: 1px solid var(--line);
+  }
+  aside.open { transform: translateX(0); }
+  .overlay.open { display: block; }
+  .menu-btn { display: flex; }
+  .intro { padding: 16px; margin-bottom: 16px; }
+  .ticket-head { padding: 16px; gap: 12px; }
+  .ticket-no { flex: 0 0 36px; height: 36px; font-size: 16px; border-radius: 10px; }
+  .ticket-title { font-size: 15px; }
+  .content { padding: 0 16px 20px; }
+  .formula { font-size: 15px; padding: 10px 12px; }
+  .navlink { font-size: 13px; padding: 10px; }
+  .actions { display: none; } /* Hide buttons on mobile for cleaner look */
+}
+
+@media print {
+  header { background: #fff; color: #000; padding: 10px; }
+  header::after { display: none; }
+  .hero p { color: #333; }
+  .layout { display: block; margin: 0; padding: 0; }
+  aside, .actions, .menu-btn, .overlay { display: none !important; }
+  .ticket { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; margin-bottom: 20px; }
+  .content { display: block !important; padding: 0 20px 20px; }
+  .ticket-head { padding: 10px 20px; }
+  body { background: #fff; font-size: 12pt; }
+  .formula { border: 1px solid #ccc; background: #fafafa; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hero">
+    <div class="eyebrow">ИВТИ · КМ-4 · Механика</div>
+    <h1>Подготовка к защите</h1>
+    <p>Все 15 вопросов в одном месте: определения, объяснения и формулы. Выбери билет из меню или открой нужный раздел.</p>
+  </div>
+</header>
+
+<div class="layout">
+  <aside id="sidebar">
+    <div class="aside-title">Список билетов</div>
+    <input class="search" id="search" type="search" placeholder="Поиск по билетам..." aria-label="Поиск по билетам">
+    <nav id="nav"></nav>
+    <div class="actions">
+      <button class="btn" onclick="openAll(true)">Открыть все</button>
+      <button class="btn" onclick="openAll(false)">Свернуть все</button>
+    </div>
+    <div class="muted" style="font-size:12px; margin-top:16px; text-align:center;">
+      Можно распечатать: Ctrl + P
+    </div>
+  </aside>
+  
+  <div class="overlay" id="overlay"></div>
+
+  <main>
+    <div class="intro">
+      <strong>💡 Как пользоваться:</strong> нажми на название билета, чтобы раскрыть ответ. Формулы написаны привычными символами: Δ — изменение величины, v₀ — начальная скорость, Σ — сумма. В задачах обязательно учитывай направление векторов и знаки проекций.
+    </div>
+    <div id="tickets"></div>
+  </main>
+</div>
+
+<button class="menu-btn" id="menuBtn" aria-label="Открыть меню">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+</button>
+
+<footer>КМ-4 · Конспект для подготовки к устной защите</footer>
+
+<script>
+// Data array updated with full ticket names
+const data = [
+["1. Основные кинематические характеристики движения материальной точки. Равнопеременное движение материальной точки.",`
+<h2>Что изучает кинематика</h2><p><b>Кинематика</b> — раздел механики, который описывает движение тел, не рассматривая причины движения. <b>Материальная точка</b> — тело, размерами которого в данной задаче можно пренебречь.</p>
+<h3>Основные характеристики</h3><ul><li><b>Радиус-вектор r</b> задаёт положение точки.</li><li><b>Траектория</b> — линия движения.</li><li><b>Путь s</b> — длина пройденной траектории; это скаляр.</li><li><b>Перемещение Δr</b> — вектор из начального положения в конечное: Δr = r₂ − r₁.</li><li><b>Скорость v</b> — изменение положения за время. Средняя: vср = Δr / Δt; мгновенная по модулю вдоль траектории: v = ds / dt.</li><li><b>Ускорение a</b> — изменение скорости за время: a = Δv / Δt; мгновенное: a = dv / dt.</li></ul>
+<h2>Равнопеременное движение</h2><p>Это движение с постоянным ускорением (a = const).</p><div class="formula">v = v₀ + at</div><div class="formula">s = v₀t + at² / 2</div><div class="formula">v² − v₀² = 2as</div><div class="formula">s = (v₀ + v) · t / 2</div><p>Здесь v₀ — начальная скорость, v — скорость в конце промежутка, a — ускорение, t — время, s — перемещение вдоль выбранной оси. Если a направлено по скорости — движение ускоренное, если против — замедленное. При расчёте по прямой выбирай положительное направление и соблюдай знаки.</p>`],
+["2. Основные кинематические характеристики движения материальной точки по окружности. Связь угловых и линейных величин. Поступательное, вращательное и сложное движение твердого тела.",`
+<h2>Движение по окружности</h2><p>Угол поворота φ измеряется в радианах. Угловая скорость показывает, как быстро меняется угол, а угловое ускорение — как быстро меняется угловая скорость.</p><div class="formula">ω = Δφ / Δt;  ε = Δω / Δt</div><div class="formula">v = ωR</div><div class="formula">aτ = εR</div><div class="formula">an = v² / R = ω²R</div><div class="formula">a = √(aτ² + an²)</div><div class="formula">T = 2π / ω;  ν = 1 / T;  ω = 2πν</div><p>R — радиус окружности, T — период одного оборота, ν — частота, ω — угловая скорость, ε — угловое ускорение. Касательное ускорение меняет модуль скорости, нормальное — направление скорости.</p>
+<h2>Движение твёрдого тела</h2><ul><li><b>Поступательное:</b> любая прямая тела остаётся параллельной самой себе; в данный момент скорости всех точек одинаковы.</li><li><b>Вращательное:</b> точки тела движутся по окружностям вокруг общей неподвижной оси; v = ωr.</li><li><b>Сложное:</b> сочетание поступательного и вращательного движений.</li></ul><div class="formula">vB = vA + ω × rBA</div><p>В плоском движении это означает: скорость точки B складывается из скорости выбранной точки A и скорости B при вращении вокруг A. Модуль вращательной составляющей равен ω · AB и направлен перпендикулярно AB.</p>`],
+["3. Законы Ньютона. Импульс. Закон изменения импульса для материальной точки и системы материальных точек.",`
+<h2>Три закона Ньютона</h2><p><b>Первый закон:</b> в инерциальной системе отсчёта тело сохраняет покой или равномерное прямолинейное движение, если равнодействующая сил равна нулю.</p><div class="formula">ΣF = 0 ⇒ v = const</div><p><b>Второй закон:</b> равнодействующая сил равна произведению массы на ускорение.</p><div class="formula">ΣF = ma</div><p>Общая запись через импульс: ΣF = Δp / Δt (для мгновенного значения — производная импульса по времени).</p><p><b>Третий закон:</b> тела действуют друг на друга силами, равными по модулю и противоположными по направлению.</p><div class="formula">F₁₂ = −F₂₁</div><h2>Импульс и его изменение</h2><div class="formula">p = mv</div><p>Импульс — векторная величина, направленная так же, как скорость. Изменение импульса равно импульсу силы:</p><div class="formula">Δp = p₂ − p₁ = ∫F dt</div><p>Если сила постоянна: Δp = F · Δt. Для системы точек внутренние силы попарно компенсируются, поэтому:</p><div class="formula">ΔP = Iвнеш;  P = Σ(mᵢvᵢ)</div><p>То есть изменение полного импульса системы определяется только внешним импульсом.</p>`],
+["4. Центр масс. Теорема о движении центра масс.",`
+<p><b>Центр масс</b> — точка, положение которой определяется распределением массы системы.</p><div class="formula">rC = (Σ mᵢrᵢ) / M;  M = Σmᵢ</div><p>Для двух тел: rC = (m₁r₁ + m₂r₂) / (m₁ + m₂). Скорость центра масс: vC = (Σmᵢvᵢ) / M.</p><h2>Теорема о движении центра масс</h2><p>Центр масс системы движется так, как двигалась бы материальная точка массой M под действием равнодействующей внешних сил.</p><div class="formula">M aC = ΣFвнеш</div><p>Или: dP / dt = ΣFвнеш. Если сумма внешних сил равна нулю, скорость центра масс постоянна, то есть центр масс покоится или движется равномерно и прямолинейно.</p>`],
+["5. Момент силы относительно неподвижной точки. Момент импульса материальной точки относительно неподвижной точки. Вывод уравнения моментов относительно неподвижной точки. Момент пары сил.",`
+<h2>Момент силы относительно точки O</h2><div class="formula">MO = r × F;  |MO| = F · l = rF sin α</div><p>r — радиус-вектор от O до точки приложения силы; l — плечо силы, то есть кратчайшее расстояние от точки O до линии действия силы; α — угол между r и F. Направление момента определяется правилом правой руки.</p>
+<h2>Момент импульса</h2><div class="formula">LO = r × p = r × (mv)</div><p>Вывод уравнения моментов: по второму закону Ньютона dp/dt = F. Дифференцируя векторное произведение r × p, получаем d(r × p)/dt = v × p + r × F. Так как p = mv, векторы v и p параллельны, поэтому v × p = 0.</p><div class="formula">dLO / dt = MO</div><p>Для системы: изменение суммарного момента импульса относительно неподвижной точки определяется суммой внешних моментов сил: dLО/dt = ΣMО,внеш.</p>
+<h2>Пара сил</h2><p>Пара сил — две равные, параллельные и противоположно направленные силы, приложенные не по одной линии. Их равнодействующая равна нулю, но они создают вращательное действие.</p><div class="formula">Mпары = F · d</div><p>d — расстояние между линиями действия сил. Момент пары не зависит от выбора точки отсчёта.</p>`],
+["6. Момент силы относительно оси. Момент импульса материальной точки относительно оси. Закон изменения момента импульса. Вывод основного уравнение динамики вращательного движения.",`
+<p><b>Момент силы относительно оси</b> — проекция вектора момента силы на эту ось.</p><div class="formula">Mz = (r × F)z</div><p>Для силы, вращающей тело вокруг оси, модуль момента равен M = F · l, где l — плечо силы относительно оси.</p><p><b>Момент импульса относительно оси</b> — проекция момента импульса на ось:</p><div class="formula">Lz = (r × p)z</div><div class="formula">ΔLz = ∫ΣMz dt</div><p>Для твёрдого тела, вращающегося вокруг неподвижной оси, Lz = Iω. При постоянном моменте инерции:</p><div class="formula">ΣMz = Iε</div><p>Это основное уравнение динамики вращательного движения. Оно аналогично второму закону Ньютона: сила вызывает поступательное ускорение, момент силы — угловое ускорение. I — момент инерции, ε — угловое ускорение.</p>`],
+["7. Момент инерции. Теорема Штейнера. Примеры расчета момента инерции.",`
+<p><b>Момент инерции</b> характеризует инертность тела при вращении и зависит от массы и её распределения относительно оси.</p><div class="formula">I = Σ(mᵢrᵢ²);  I = ∫r² dm</div><p>Для одной материальной точки: I = mr². Единица измерения — кг·м².</p><h2>Теорема Штейнера</h2><div class="formula">I = IC + Md²</div><p>Момент инерции относительно любой оси равен моменту инерции относительно параллельной оси через центр масс плюс масса тела, умноженная на квадрат расстояния между осями.</p><h2>Часто используемые формулы</h2><ul><li>Тонкое кольцо относительно центральной оси: I = MR².</li><li>Сплошной диск или цилиндр: I = MR² / 2.</li><li>Однородный стержень длиной L относительно оси через центр, перпендикулярной стержню: I = ML² / 12.</li><li>Тот же стержень относительно оси через конец: I = ML² / 3.</li><li>Сплошной шар относительно диаметра: I = 2MR² / 5.</li></ul><p>При решении сначала определи ось вращения, затем выбери формулу для стандартного тела или примени теорему Штейнера.</p>`],
+["8. Работа силы (элементарная работа, работа переменной силы, работа постоянной силы, работа равнодействующей, работа при вращательном движении).",`
+<p><b>Работа силы</b> характеризует передачу энергии при перемещении тела.</p><div class="formula">dA = F · ds · cos α</div><p>α — угол между силой и перемещением. При постоянной силе:</p><div class="formula">A = F · s · cos α</div><ul><li>Сила по направлению движения: A = Fs.</li><li>Сила перпендикулярна перемещению: A = 0.</li><li>Сила против движения: A = −Fs.</li></ul><p>Для переменной силы работу находят суммированием элементарных работ; в одномерном случае A = ∫F(x) dx.</p><p>Работа равнодействующей равна сумме работ всех сил: AΣ = ΣAᵢ.</p><h2>Работа при вращении</h2><div class="formula">dA = M dφ;  A = Mφ (если M = const)</div><p>При переменном моменте: A = ∫M(φ)dφ. Угол φ должен быть выражен в радианах.</p><h2>Мощность</h2><div class="formula">N = A / t;  N = F · v · cos α;  N = Mω</div><p>Работа измеряется в джоулях (Дж), мощность — в ваттах (Вт).</p>`],
+["9. Теорема об изменения кинетической энергии.",`
+<p><b>Теорема:</b> изменение кинетической энергии материальной точки равно работе равнодействующей всех сил, приложенных к ней.</p><div class="formula">Ek = mv² / 2</div><div class="formula">Ek₂ − Ek₁ = AΣ</div><p>Для системы материальных точек изменение суммарной кинетической энергии равно сумме работ всех сил, действующих на точки системы (внешних и внутренних).</p><h2>Краткий вывод</h2><p>По второму закону Ньютона F = ma. Учитываем связь ускорения со скоростью и перемещением: a ds = v dv. Тогда F ds = m v dv. Интегрируя от начальной до конечной скорости, получаем:</p><div class="formula">A = ∫F ds = m(v₂² − v₁²) / 2 = Ek₂ − Ek₁</div><p>Если работа положительна, кинетическая энергия увеличивается; если отрицательна — уменьшается.</p>`],
+["10. Кинетическая энергия (материальной точки, системы м.т., абсолютно твердого тела при поступательном и вращательном движении). Кинетическая энергия при сложном движении тела.",`
+<p><b>Кинетическая энергия</b> — энергия, которой обладает тело вследствие движения.</p><ul><li>Материальная точка: <b>Ek = mv² / 2.</b></li><li>Система точек: <b>Ek = Σ(mᵢvᵢ² / 2).</b></li><li>Твёрдое тело при поступательном движении: <b>Ek = MvC² / 2.</b></li><li>Тело при вращении вокруг неподвижной оси: <b>Ek = Iω² / 2.</b></li></ul><h2>Сложное (плоскопараллельное) движение</h2><p>Его можно представить как поступательное движение центра масс и вращение вокруг оси, проходящей через центр масс.</p><div class="formula">Ek = MvC² / 2 + ICω² / 2</div><p>Это теорема Кёнига для абсолютно твёрдого тела. M — масса тела, vC — скорость центра масс, IC — момент инерции относительно центральной оси, ω — угловая скорость.</p>`],
+["11. Консервативные и неконсервативные силы. Потенциальная энергия. Связь потенциальной энергии с силой. Потенциальная энергия тела в положении равновесия.",`
+<p><b>Консервативные силы</b> — силы, работа которых зависит только от начального и конечного положения, но не от траектории. Примеры: сила тяжести, сила упругости, гравитационная сила.</p><div class="formula">A по замкнутому контуру = 0</div><p><b>Неконсервативные силы</b> — их работа зависит от траектории. Примеры: трение, сопротивление воздуха.</p><p><b>Потенциальная энергия Ep</b> — энергия, связанная с положением тел или их взаимным расположением.</p><div class="formula">A₁₂ = Ep₁ − Ep₂ = −ΔEp</div><p>Связь силы с потенциальной энергией в одномерном случае:</p><div class="formula">Fx = −dEp / dx</div><p>В пространстве сила направлена в сторону наиболее быстрого уменьшения потенциальной энергии.</p><h2>Равновесие</h2><div class="formula">dEp / dx = 0</div><ul><li><b>Устойчивое:</b> Ep имеет минимум; малое отклонение вызывает стремление вернуться.</li><li><b>Неустойчивое:</b> Ep имеет максимум; малое отклонение уводит тело дальше.</li><li><b>Безразличное:</b> Ep не меняется при малом перемещении.</li></ul><p>Для проверки в простом одномерном случае используют вторую производную: при минимуме Ep'' &gt; 0, при максимуме Ep'' &lt; 0.</p>`],
+["12. Потенциальная энергия материальной точки в поле центральной силы и в поле силы тяжести. Потенциальная энергия абсолютно твердого тела в поле силы тяжести.",`
+<h2>Центральное поле</h2><p>Центральная сила направлена вдоль линии, соединяющей точку с неподвижным центром. Для гравитационного притяжения при нуле энергии на бесконечности:</p><div class="formula">Ep = −GMm / r</div><p>G — гравитационная постоянная, M и m — массы, r — расстояние между ними.</p><h2>Поле силы тяжести у поверхности Земли</h2><div class="formula">Ep = mgh</div><p>h — высота относительно выбранного нулевого уровня; g ≈ 9,81 м/с². Работа силы тяжести при переходе с высоты h₁ на h₂: A = mg(h₁ − h₂).</p><h2>Абсолютно твёрдое тело</h2><p>Потенциальная энергия тела в однородном поле тяжести равна энергии материальной точки с массой всего тела, находящейся в центре масс:</p><div class="formula">Ep = MghC</div><p>hC — высота центра масс тела.</p>`],
+["13. Закон изменения механической энергии. Закон сохранения механической энергии, условие его выполнения.",`
+<p>Механическая энергия — сумма кинетической и потенциальной энергий:</p><div class="formula">E = Ek + Ep</div><p><b>Закон изменения:</b> изменение механической энергии системы равно работе неконсервативных сил.</p><div class="formula">E₂ − E₁ = Aнеконс</div><p>Если есть трение или сопротивление, механическая энергия обычно уменьшается, переходя во внутреннюю энергию и тепло.</p><h2>Закон сохранения механической энергии</h2><p>Если работа неконсервативных сил равна нулю, механическая энергия постоянна:</p><div class="formula">Ek + Ep = const</div><div class="formula">mv₁² / 2 + mgh₁ = mv₂² / 2 + mgh₂</div><p>Для пружины можно добавить энергию упругой деформации: E = mv²/2 + mgh + kx²/2.</p><p><b>Условия:</b> система рассматривается как замкнутая (или внешняя работа отсутствует), а неконсервативные силы не совершают работу. Консервативные силы могут превращать кинетическую энергию в потенциальную и обратно, но сумма остаётся неизменной.</p>`],
+["14. Закон изменения импульса. Закон сохранения импульса, условия его выполнения. Закон изменения момента импульса. Закон сохранения момента импульса, условия его выполнения.",`
+<h2>Импульс</h2><div class="formula">p = mv;  P = Σmᵢvᵢ</div><p>Закон изменения полного импульса системы: изменение импульса равно импульсу внешних сил.</p><div class="formula">ΔP = ∫ΣFвнеш dt</div><p>Если сумма внешних сил равна нулю (или их импульсом можно пренебречь), выполняется закон сохранения импульса:</p><div class="formula">P = const</div><p>Для двух тел до и после взаимодействия: m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'. Это векторное равенство; при расчёте по осям записывают отдельно проекции.</p>
+<h2>Момент импульса</h2><div class="formula">LO = r × p</div><p>Закон изменения момента импульса относительно неподвижной точки O:</p><div class="formula">ΔLO = ∫ΣMO,внеш dt</div><p>Если суммарный внешний момент относительно этой точки равен нулю, момент импульса сохраняется:</p><div class="formula">LO = const</div><p>Для вращения вокруг неподвижной оси L = Iω, поэтому:</p><div class="formula">I₁ω₁ = I₂ω₂</div><p>Пример: фигурист прижимает руки к телу — момент инерции уменьшается, а угловая скорость увеличивается. Условия сохранения: внешний импульс сил равен нулю для импульса; внешний момент сил относительно выбранной точки или оси равен нулю для момента импульса.</p>`],
+["15. Удар. Абсолютно неупругий удар (расчет модуля и направления скорости). Абсолютно упругий удар (расчет скоростей при центральном ударе).",`
+<p><b>Удар</b> — кратковременное взаимодействие тел, при котором за малое время их скорости заметно изменяются. Если внешним импульсом за время удара можно пренебречь, импульс системы сохраняется.</p><div class="formula">Σpдо = Σpпосле</div><h2>Абсолютно неупругий удар</h2><p>После удара тела соединяются и движутся вместе с общей скоростью u. По закону сохранения импульса:</p><div class="formula">m₁v₁ + m₂v₂ = (m₁ + m₂)u</div><div class="formula">u = (m₁v₁ + m₂v₂) / (m₁ + m₂)</div><p>Для движения в плоскости сначала находят проекции:</p><div class="formula">ux = (m₁v₁x + m₂v₂x) / (m₁ + m₂)</div><div class="formula">uy = (m₁v₁y + m₂v₂y) / (m₁ + m₂)</div><div class="formula">u = √(ux² + uy²);  tan α = uy / ux</div><p>Знаки проекций определяют направление. Угол α следует выбирать с учётом четверти координатной плоскости.</p><p>Кинетическая энергия при абсолютно неупругом ударе не сохраняется. Потеря кинетической энергии:</p><div class="formula">ΔEk(потеря) = ½ · [m₁m₂ / (m₁ + m₂)] · (v₁ − v₂)²</div><p>Здесь v₁ и v₂ — векторы скоростей до удара, а квадрат разности означает квадрат модуля относительной скорости.</p>
+<h2>Абсолютно упругий центральный удар</h2><p>При абсолютно упругом ударе сохраняются и импульс, и кинетическая энергия. При центральном ударе скорости направлены вдоль одной прямой.</p><div class="formula">m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'</div><div class="formula">m₁v₁²/2 + m₂v₂²/2 = m₁v₁'²/2 + m₂v₂'²/2</div><p>Решение этих двух уравнений даёт:</p><div class="formula">v₁' = [(m₁ − m₂)v₁ + 2m₂v₂] / (m₁ + m₂)</div><div class="formula">v₂' = [2m₁v₁ + (m₂ − m₁)v₂] / (m₁ + m₂)</div><p>Штрих означает скорость после удара. Скорости подставляются со знаками: если тело движется против выбранного положительного направления, скорость отрицательна.</p><h3>Полезные частные случаи</h3><ul><li>Если массы равны и второе тело покоится, тела обмениваются скоростями: v₁' = 0, v₂' = v₁.</li><li>Если второе тело очень массивное и покоится, первое тело отскакивает почти с той же скоростью в обратном направлении.</li><li>Если второе тело очень лёгкое и покоится, скорость тяжёлого первого тела почти не меняется.</li></ul><div class="note"><b>Главное различие:</b> при неупругом ударе сохраняется импульс, но часть кинетической энергии переходит во внутреннюю энергию и деформацию. При абсолютно упругом ударе сохраняются и импульс, и кинетическая энергия.</div>`]
+];
+
+const nav = document.getElementById('nav');
+const root = document.getElementById('tickets');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+const menuBtn = document.getElementById('menuBtn');
+
+// Generate content
+data.forEach((item, i) => {
+  // Nav link
+  const a = document.createElement('a');
+  a.className = 'navlink';
+  a.href = '#ticket-' + (i + 1);
+  a.innerHTML = `<span class="num">${i + 1}</span><span>${item[0]}</span>`;
+  a.addEventListener('click', () => {
+    if (window.innerWidth <= 900) {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+    }
+  });
+  nav.appendChild(a);
+
+  // Ticket card
+  const section = document.createElement('section');
+  section.className = 'ticket' + (i === 0 ? ' open' : '');
+  section.id = 'ticket-' + (i + 1);
+  section.innerHTML = `
+    <div class="ticket-head" role="button" tabindex="0" aria-expanded="${i === 0}">
+      <div class="ticket-no">${i + 1}</div>
+      <div style="flex:1;">
+        <div class="ticket-title">${item[0]}</div>
+        <div class="ticket-sub">Билет ${i + 1} · определения и формулы</div>
+      </div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="content">
+      ${item[1]}
+      <div class="actions" style="border-top:none; padding-top:0; margin-top:20px;">
+        <button class="btn" onclick="window.print()">🖨 Печать / PDF</button>
+        <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Наверх</button>
+      </div>
+    </div>
+  `;
+  root.appendChild(section);
+
+  const head = section.querySelector('.ticket-head');
+  const toggle = () => {
+    section.classList.toggle('open');
+    head.setAttribute('aria-expanded', section.classList.contains('open'));
+  };
+  head.addEventListener('click', toggle);
+  head.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle();
+    }
+  });
+});
+
+// Open/Close all
+function openAll(v) {
+  document.querySelectorAll('.ticket').forEach(s => {
+    s.classList.toggle('open', v);
+    s.querySelector('.ticket-head').setAttribute('aria-expanded', v);
+  });
+}
+
+// Search
+document.getElementById('search').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.ticket').forEach((s, i) => {
+    const hit = (data[i][0] + ' ' + s.innerText).toLowerCase().includes(q);
+    s.style.display = hit ? '' : 'none';
+    nav.children[i].style.display = hit ? '' : 'none';
+    if (q && hit) s.classList.add('open');
+  });
+});
+
+// Scroll spy
+const links = [...nav.querySelectorAll('a')];
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      links.forEach((a, i) => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+    }
+  });
+}, { rootMargin: '-10% 0px -80% 0px' });
+document.querySelectorAll('.ticket').forEach(s => observer.observe(s));
+
+// Mobile menu toggle
+menuBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('open');
+});
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('open');
+});
+</script>
+</body>
+</html>
